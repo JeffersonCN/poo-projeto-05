@@ -1,3 +1,10 @@
+<%@page import="java.util.Comparator"%>
+<%@page import="quiz.helpers.RankingComparator"%>
+<%@page import="java.util.UUID"%>
+<%@page import="quiz.models.Player"%>
+<%@page import="java.util.Collections"%>
+<%@page import="quiz.models.Score"%>
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -34,8 +41,8 @@ and open the template in the editor.
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav" data-0="margin-top:20px;" data-300="margin-top:5px;">
-                        <li class="active"><a href="index.html">Home</a></li>
-                        <li ><a href="ranking.jsp">Ranking</a></li>
+                        <li ><a href="index.html">Home</a></li>
+                        <li class="active"><a href="ranking.jsp">Ranking</a></li>
                         <li ><a >Quiz</a></li>
                     </ul>
                 </div>
@@ -48,8 +55,8 @@ and open the template in the editor.
                     <div class="col-md-6 col-md-offset-3">
 
                         <div class="align-center">
-                            <i class="fa fa-flask fa-5x mar-bot20"></i>
-                            <h2 class="slogan">Welcome to Quiz</h2>
+                            <i class="fa fa-list fa-5x mar-bot20"></i>
+                            <h2 class="slogan">Ranking</h2>
                             <p>
                                 Lorem ipsum dolor sit amet, natum bonorum expetendis usu ut. 
                                 Eum impetus offendit disputationi eu, at vim aliquip lucilius praesent. 
@@ -64,25 +71,36 @@ and open the template in the editor.
 
         <section id="section-services" class="section pad-bot30 bg-white">
             <div class="container"> 
-                <div class="row mar-bot40">
-                    <div class="col-lg-6" >
-                        <div class="align-center">
-                            <i class="fa fa-arrow-right fa-5x mar-bot30"></i>
-                            <h4 class="text-bold">Responder ao Quiz</h4>
-                            <p>Lorem ipsum dolor sit amet, mutat graeco volumus ad eam, singulis patrioque comprehensam nam no. 
-                                Mei cu dicat voluptaria volumus.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-lg-6" >
-                        <div class="align-center">
-                            <i class="fa fa-list-ol fa-5x mar-bot30"></i>
-                            <h4 class="text-bold">Ranking</h4>
-                            <p>Lorem ipsum dolor sit amet, mutat graeco volumus ad eam, singulis patrioque comprehensam nam no. 
-                                Mei cu dicat voluptaria volumus.
-                            </p>
-                        </div>
-                    </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th class="text-center">
+                                    Nome
+                                </th>
+                                <th class="text-center">
+                                    Pontuação
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%
+//                                Score.scores.clear();
+//                                Score.scores.add(new Score(10, new Player(new UUID(1, 999), "Jogador 1")));
+//                                Score.scores.add(new Score(1, new Player(new UUID(1, 999), "Jogador 3")));
+//                                Score.scores.add(new Score(20, new Player(new UUID(1, 999), "Jogador 2")));
+//                                Score.scores.add(new Score(-1, new Player(new UUID(1, 999), "Jogador 4")));
+                                ArrayList<Score> ranking = Score.scores;
+                                Collections.sort(ranking,new RankingComparator());
+                                for (Score score : ranking) {
+                            %>
+                            <tr>
+                                <td class="text-center"><%= score.getPlayer().getName()%></td>
+                                <td class="text-center"><%= score.getScore()%></td>
+                            </tr>
+                            <%}%>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>

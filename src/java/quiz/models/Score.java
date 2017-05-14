@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class Score {
 
-    private int score;
+    private Integer score;
     private Player player;
     public static ArrayList<Score> scores = new ArrayList<Score>();
 
@@ -25,13 +25,23 @@ public class Score {
         scores.add(score);
     }
 
-    public int getScore() {
+    public Integer getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(Integer score) {
         this.score = score;
     }
+
+    public static ArrayList<Score> getScores() {
+        return scores;
+    }
+
+    public static void setScores(ArrayList<Score> scores) {
+        Score.scores = scores;
+    }
+
+    
 
     public Player getPlayer() {
         return player;
