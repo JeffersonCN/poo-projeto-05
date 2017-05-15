@@ -5,10 +5,45 @@
  */
 package quiz.models;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author jeffersoncn
  */
 public class Question {
+    private String text;
+    private ArrayList<Option> options;
+    private Option selectedOption;
+
+    public Question(String text) {
+        this.text = text;
+        this.options = new ArrayList<>();
+    }
+
+    public ArrayList<Option> getOptions() {
+        return options;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public Option getSelectedOption() {
+        return selectedOption;
+    }
+
+    public void selectOption(Option selectedOption) {
+        this.selectedOption = selectedOption;
+    }
     
+    public void addOption(String text, boolean isCorrect) {
+        Option newOption = new Option(text, isCorrect);
+        
+        this.options.add(newOption);
+    }
 }

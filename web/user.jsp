@@ -1,9 +1,12 @@
+<%@page import="java.util.Comparator"%>
+<%@page import="quiz.helpers.RankingComparator"%>
+<%@page import="java.util.UUID"%>
+<%@page import="quiz.models.Player"%>
+<%@page import="java.util.Collections"%>
+<%@page import="quiz.models.Score"%>
+<%@page import="java.util.ArrayList"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <meta charset="utf-8">
@@ -18,6 +21,7 @@ and open the template in the editor.
         <link rel="stylesheet" href="libs/css/style.css">
         <link rel="stylesheet" href="libs/css/default.css">
     </head>
+    <script language="JavaScript" src="TratamentoEntradas.js"></script>
     <body>
         <section id="header" class="appear"></section>
         <div class="navbar navbar-fixed-top" role="navigation" data-0="line-height:100px; height:100px; background-color:rgba(0,0,0,0.3);" data-300="line-height:60px; height:60px; background-color:rgba(0,0,0,1);">
@@ -28,15 +32,15 @@ and open the template in the editor.
                     </button>
                     <h1>
                         <a class="navbar-brand" href="index.html" data-0="line-height:90px;" data-300="line-height:50px;">
-                             GRUPO 6 
+                            GRUPO 6
                         </a>
                     </h1>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav" data-0="margin-top:20px;" data-300="margin-top:5px;">
-                        <li class="active"><a href="index.html">Home</a></li>
+                        <li ><a href="index.html">Home</a></li>
                         <li ><a href="ranking.jsp">Ranking</a></li>
-                        <li ><a href="user.jsp">Jogar</a></li>
+                        <li class="active"><a href="user.jsp">Jogar</a></li>
                     </ul>
                 </div>
             </div>
@@ -48,44 +52,26 @@ and open the template in the editor.
                     <div class="col-md-6 col-md-offset-3">
 
                         <div class="align-center">
-                            <i class="fa fa-flask fa-5x mar-bot20"></i>
-                            <h2 class="slogan">Bem vindo ao Quiz</h2>
+                            <i class="fa fa-list fa-5x mar-bot20"></i>
+                          <form class="form-group" name ="formUser" action="quiz.jsp">
+                            <h2 class="slogan">Usuário</h2>
                             <p>
-                                Se divirta testando seus conhecimentos com nosso incrivel Quiz.
-                                Você poderá responder as perguntas e ter sua pontuação marcada
-                                instantaneamente na nossa pagina de ranking, venha competir com 
-                                seus amigos! 
-                            </p>	
+                                Olá, caro jogador. A seguir será apresentada uma sequência de perguntas com apenas uma alternativa correta
+                                para cara. Antes de iniciar seu teste é aconselhavel que informe seu nome no campo a baixo para identificar 
+                                sua pontuação.
+                            </p>
+                            <div class="input-group">
+                                <input class="form-control" type="text" size="30" name="name" id ="nome" maxlength="30" placeholder="Insira seu nome" onkeypress="Letras(formUser.nome);"/> 
+                                <span class="input-group-btn"><button type="submit" title="Jogar!" class="btn btn-primary">Go!</button></span>
+                            </div>
+                          </form>
+                           	
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="section-services" class="section pad-bot30 bg-white">
-            <div class="container"> 
-                <div class="row mar-bot40">
-                    <div class="col-lg-6" >
-                        <div class="align-center">
-                            <a href="quiz.jsp">  <i class="fa fa-arrow-right fa-5x mar-bot30"></i></a>
-                            <a href="quiz.jsp"><h4 class="text-bold">Responder ao Quiz</h4></a>
-                            <p> 
-                                Clique em responder ao Quiz para iniciar seu teste.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-lg-6" >
-                        <div class="align-center">
-                            <a href="ranking.jsp">  <i class="fa fa-list-ol fa-5x mar-bot30"></i></a>
-                            <a href="ranking.jsp"> <h4 class="text-bold">Ranking</h4></a>
-                            <p>
-                                Clique em Ranking para visualizar sua colocação no ranking geral.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <section id="footer" class="section footer">
             <div class="container">
@@ -103,8 +89,8 @@ and open the template in the editor.
 
                 <div class="row align-center copyright">
                     <div class="col-sm-12"><p>Copyright &copy; Grupo 6</p>
-                        <div class="col-sm-12"><p>Developed by: Jefferson C.    Victor V.   Tiago F.    Peterson P. Cesar P.</p>
                         <div class="credits">
+                            <div class="col-sm-12"><p>Developed by: Jefferson C.    Victor V.   Tiago F.    Peterson P. Cesar P.</p>
                             <a >Quiz</a> by <a >Grupo 6</a>
                         </div>
                     </div>

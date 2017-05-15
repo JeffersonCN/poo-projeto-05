@@ -1,3 +1,10 @@
+<%@page import="java.util.Comparator"%>
+<%@page import="quiz.helpers.RankingComparator"%>
+<%@page import="java.util.UUID"%>
+<%@page import="quiz.models.Player"%>
+<%@page import="java.util.Collections"%>
+<%@page import="quiz.models.Score"%>
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -28,14 +35,14 @@ and open the template in the editor.
                     </button>
                     <h1>
                         <a class="navbar-brand" href="index.html" data-0="line-height:90px;" data-300="line-height:50px;">
-                             GRUPO 6 
+                            GRUPO 6
                         </a>
                     </h1>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav" data-0="margin-top:20px;" data-300="margin-top:5px;">
-                        <li class="active"><a href="index.html">Home</a></li>
-                        <li ><a href="ranking.jsp">Ranking</a></li>
+                        <li ><a href="index.html">Home</a></li>
+                        <li class="active"><a href="ranking.jsp">Ranking</a></li>
                         <li ><a href="user.jsp">Jogar</a></li>
                     </ul>
                 </div>
@@ -48,13 +55,12 @@ and open the template in the editor.
                     <div class="col-md-6 col-md-offset-3">
 
                         <div class="align-center">
-                            <i class="fa fa-flask fa-5x mar-bot20"></i>
-                            <h2 class="slogan">Bem vindo ao Quiz</h2>
+                            <i class="fa fa-list fa-5x mar-bot20"></i>
+                            <h2 class="slogan">Ranking</h2>
                             <p>
-                                Se divirta testando seus conhecimentos com nosso incrivel Quiz.
-                                Voc√™ poder√° responder as perguntas e ter sua pontua√ß√£o marcada
-                                instantaneamente na nossa pagina de ranking, venha competir com 
-                                seus amigos! 
+                                Os Hall dos Campeıes È atualizado diariamente. 
+                                Jogue com seus amigos e conquiste seu lugar no Podium.
+
                             </p>	
                         </div>
                     </div>
@@ -64,25 +70,36 @@ and open the template in the editor.
 
         <section id="section-services" class="section pad-bot30 bg-white">
             <div class="container"> 
-                <div class="row mar-bot40">
-                    <div class="col-lg-6" >
-                        <div class="align-center">
-                            <a href="quiz.jsp">  <i class="fa fa-arrow-right fa-5x mar-bot30"></i></a>
-                            <a href="quiz.jsp"><h4 class="text-bold">Responder ao Quiz</h4></a>
-                            <p> 
-                                Clique em responder ao Quiz para iniciar seu teste.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-lg-6" >
-                        <div class="align-center">
-                            <a href="ranking.jsp">  <i class="fa fa-list-ol fa-5x mar-bot30"></i></a>
-                            <a href="ranking.jsp"> <h4 class="text-bold">Ranking</h4></a>
-                            <p>
-                                Clique em Ranking para visualizar sua coloca√ß√£o no ranking geral.
-                            </p>
-                        </div>
-                    </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th class="text-center">
+                                    Nome
+                                </th>
+                                <th class="text-center">
+                                    PontuaÁ„o
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%
+//                                Score.scores.clear();
+//                                Score.scores.add(new Score(10, new Player(new UUID(1, 999), "Jogador 1")));
+//                                Score.scores.add(new Score(1, new Player(new UUID(1, 999), "Jogador 3")));
+//                                Score.scores.add(new Score(20, new Player(new UUID(1, 999), "Jogador 2")));
+//                                Score.scores.add(new Score(-1, new Player(new UUID(1, 999), "Jogador 4")));
+                                ArrayList<Score> ranking = Score.scores;
+                                Collections.sort(ranking,new RankingComparator());
+                                for (Score score : ranking) {
+                            %>
+                            <tr>
+                                <td class="text-center"><%= score.getPlayer().getName()%></td>
+                                <td class="text-center"><%= score.getScore()%></td>
+                            </tr>
+                            <%}%>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>
