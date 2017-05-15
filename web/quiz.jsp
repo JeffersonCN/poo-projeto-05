@@ -32,7 +32,7 @@
                     </button>
                     <h1>
                         <a class="navbar-brand" href="index.html" data-0="line-height:90px;" data-300="line-height:50px;">
-                            Quiz
+                            GRUPO 6
                         </a>
                     </h1>
                 </div>
