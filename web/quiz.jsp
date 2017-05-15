@@ -5,12 +5,8 @@
 <%@page import="java.util.Collections"%>
 <%@page import="quiz.models.Score"%>
 <%@page import="java.util.ArrayList"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <meta charset="utf-8">
@@ -25,6 +21,7 @@ and open the template in the editor.
         <link rel="stylesheet" href="libs/css/style.css">
         <link rel="stylesheet" href="libs/css/default.css">
     </head>
+    <script language="JavaScript" src="TratamentoEntradas.js"></script>
     <body>
         <section id="header" class="appear"></section>
         <div class="navbar navbar-fixed-top" role="navigation" data-0="line-height:100px; height:100px; background-color:rgba(0,0,0,0.3);" data-300="line-height:60px; height:60px; background-color:rgba(0,0,0,1);">
@@ -42,8 +39,8 @@ and open the template in the editor.
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav" data-0="margin-top:20px;" data-300="margin-top:5px;">
                         <li ><a href="index.html">Home</a></li>
-                        <li class="active"><a href="ranking.jsp">Ranking</a></li>
-                        <li ><a href="quiz.jsp">Quiz</a></li>
+                        <li ><a href="ranking.jsp">Ranking</a></li>
+                        <li class="active"><a href="quiz.jsp">Quiz</a></li>
                     </ul>
                 </div>
             </div>
@@ -56,53 +53,23 @@ and open the template in the editor.
 
                         <div class="align-center">
                             <i class="fa fa-list fa-5x mar-bot20"></i>
-                            <h2 class="slogan">Ranking</h2>
+                          <form class="form-group" name ="form1">
+                            <h2 class="slogan">Quiz</h2>
                             <p>
-                                Os Hall dos Campeıes È atualizado diariamente. 
-                                Jogue com seus amigos e conquiste seu lugar no Podium.
-
-                            </p>	
+                                Ol√°, caro jogador. A seguir ser√° apresentada uma sequ√™ncia de perguntas com apenas uma alternativa correta
+                                para cara. Antes de iniciar seu teste √© aconselhavel que informe seu nome no campo a baixo para identificar 
+                                sua pontua√ß√£o.
+                      
+                                <input class="form-control" type="text" size="30" name="nome" id ="nome" maxlength="30" value="Insira seu nome" onkeypress="Letras(form1.nome);"/> 
+                            </p>
+                          </form>
+                           	
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="section-services" class="section pad-bot30 bg-white">
-            <div class="container"> 
-                <div class="table-responsive">
-                    <table class="table table-bordered table-hover">
-                        <thead>
-                            <tr>
-                                <th class="text-center">
-                                    Nome
-                                </th>
-                                <th class="text-center">
-                                    PontuaÁ„o
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <%
-//                                Score.scores.clear();
-//                                Score.scores.add(new Score(10, new Player(new UUID(1, 999), "Jogador 1")));
-//                                Score.scores.add(new Score(1, new Player(new UUID(1, 999), "Jogador 3")));
-//                                Score.scores.add(new Score(20, new Player(new UUID(1, 999), "Jogador 2")));
-//                                Score.scores.add(new Score(-1, new Player(new UUID(1, 999), "Jogador 4")));
-                                ArrayList<Score> ranking = Score.scores;
-                                Collections.sort(ranking,new RankingComparator());
-                                for (Score score : ranking) {
-                            %>
-                            <tr>
-                                <td class="text-center"><%= score.getPlayer().getName()%></td>
-                                <td class="text-center"><%= score.getScore()%></td>
-                            </tr>
-                            <%}%>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
 
         <section id="footer" class="section footer">
             <div class="container">
@@ -120,8 +87,8 @@ and open the template in the editor.
 
                 <div class="row align-center copyright">
                     <div class="col-sm-12"><p>Copyright &copy; Grupo 6</p>
-                        <div class="col-sm-12"><p>Developed by: Jefferson C.    Victor V.   Tiago F.    Peterson P. Cesar P.</p>
                         <div class="credits">
+                            <div class="col-sm-12"><p>Developed by: Jefferson C.    Victor V.   Tiago F.    Peterson P. Cesar P.</p>
                             <a >Quiz</a> by <a >Grupo 6</a>
                         </div>
                     </div>
