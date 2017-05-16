@@ -23,10 +23,7 @@
         strError = "Deu erro no getParameter manolo. Erro: " + e.getMessage();
     }
     
-    if(hasError) {
-        response.sendRedirect("user.jsp");
-    }
-    if(name == null || name.isEmpty()) {
+    if(hasError || name == null || name.isEmpty()) {
         response.sendRedirect("user.jsp");
     }
     
