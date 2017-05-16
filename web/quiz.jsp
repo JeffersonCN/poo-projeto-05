@@ -9,6 +9,7 @@
 <%@page import="quiz.models.Score"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <%
     String strError = null;
     String name = null;
@@ -74,7 +75,6 @@
                 </div>
             </div>
         </div>
-        
         <section class="featured">
             <div class="container"> 
                 <div class="row mar-bot40">
