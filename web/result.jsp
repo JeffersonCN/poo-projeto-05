@@ -1,6 +1,6 @@
+<%@page import="quiz.models.Question"%>
 <%@page import="quiz.models.Option"%>
 <%@page import="quiz.models.Quiz"%>
-<%@page import="quiz.models.Question"%>
 <%@page import="java.util.Comparator"%>
 <%@page import="quiz.helpers.RankingComparator"%>
 <%@page import="java.util.UUID"%>
@@ -9,32 +9,34 @@
 <%@page import="quiz.models.Score"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <%
+    String id = null;
     String strError = null;
-    String name = null;
     boolean hasError = false;
-    String user_id = UUID.randomUUID().toString();
-    String quiz_id = UUID.randomUUID().toString();
+    double result = 0;
+    ArrayList<Question> questions;
     
     try {
-        name = request.getParameter("name");
-    }catch(Exception e) {
-        strError = "Deu erro no getParameter manolo. Erro: " + e.getMessage();
+        id = request.getParameter("id");
+        questions = Quiz.getQuestions();
+        for(int i = 0; i < questions.size(); i++){
+            for(Option o : questions.get(i).getOptions()){
+                if(o.getText().equals(request.getParameter(String.valueOf(i)))){
+                    questions.get(i).selectOption(o);
+                }
+            }   
+        }
+    }catch(Exception e){
+        hasError = true;
+        strError = "Erro: " + e.getMessage();
     }
     
-    if(hasError) {
-        response.sendRedirect("user.jsp");
+    if(!hasError){
+        result = Quiz.validateAnswers();
     }
-    if(name == null || name.isEmpty()) {
-        response.sendRedirect("user.jsp");
-    }
-    
-    Player player = new Player(user_id, name);
-    Player.setPlayer(player);
-    
-    Quiz quiz = new Quiz(quiz_id, player);
-
 %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -74,34 +76,17 @@
                 </div>
             </div>
         </div>
-        
+
         <section class="featured">
             <div class="container"> 
                 <div class="row mar-bot40">
                     <div class="col-md-6 col-md-offset-3">
-                            <div class="align-center">
-                                <i class="fa fa-list fa-5x mar-bot20"></i>
-                            </div>
-                        <form name="formQuiz" action="result.jsp">
-                            <input type="hidden" value="<%= quiz.getId() %>">
-                            <% ArrayList<Question> test = Quiz.getQuestions(); %>
-                            <% for(Question question: test){ %>
-                                <div class="panel panel-default">
-                                <div class="panel-heading"><%= question.getText()%></div>
-                                <% for(Option option: question.getOptions()){ %>
-                                    <label style="color: #454545;" for="<%=test.indexOf(question)%>">
-                                        <input type="radio"  name="<%=test.indexOf(question)%>" value="<%= option.getText() %>"/><%= option.getText() %>
-                                    </label>
-                                    <br/>
-                                <%}%>
-                                </div>
-                            <%}%>
-                          <button type="submit" style="color: #454545">Enviar</button>
-                        </form>
+                        <p><%= result %></p>
                     </div>
                 </div>
             </div>
         </section>
+
 
         <section id="footer" class="section footer">
             <div class="container">

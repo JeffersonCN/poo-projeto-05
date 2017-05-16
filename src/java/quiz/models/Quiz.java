@@ -6,26 +6,24 @@
 package quiz.models;
 
 import java.util.ArrayList;
-import java.util.UUID;
 /**
  *
  * @author jeffersoncn
  */
 public class Quiz {
     private static ArrayList<Question> questions;
-    private UUID id;
+    private String id;
     private Player player;
+    private static int resultCount = 0;
+    private static double resultGradeSum = 0.0;
+    private static double lastGrade = 0.0;
 
-    public Quiz(UUID id, Player player) {
+    public Quiz(String id, Player player) {
         this.id = id;
         this.player = player;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
@@ -62,5 +60,21 @@ public class Quiz {
         }
         
         return questions;
+    }
+    
+    public static double validateAnswers(){
+        int count = 0;
+        for(int i = 0; i < questions.size(); i++){
+            Option option = questions.get(i).getSelectedOption();
+            if(option.isCorrectAnswer()){
+                count++;
+            }
+        }
+       
+        double grade = (double)count / (double)questions.size();
+        Quiz.lastGrade = grade;
+        Quiz.resultGradeSum += grade;
+        Quiz.resultCount++;
+        return grade;
     }
 }

@@ -1,6 +1,5 @@
 package quiz.models;
 
-import java.util.UUID;
 import java.util.ArrayList;
 
 /**
@@ -10,20 +9,20 @@ import java.util.ArrayList;
  */
 public final class Player {
     
-    private UUID id;
+    private String id;
     private String name;
     public static ArrayList<Player> players;
     
-    public Player(UUID id, String name){
+    public Player(String id, String name){
         this.setId(id);
         this.setName(name);
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 
