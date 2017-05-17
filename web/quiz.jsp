@@ -68,7 +68,9 @@
                                 long seed = System.nanoTime();
                                 Collections.shuffle(test, new Random(seed));
                             %>
-                            <% for (Question question : test) {%>
+                            <% for (int i = 0; i < 10; i++) {
+                                Question question = test.get(i);
+                            %>
                             <div class="panel panel-default">
                                 <div class="panel-heading"><%= question.getText()%></div>
                                 <% for (Option option : question.getOptions()) {%>
