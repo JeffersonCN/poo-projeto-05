@@ -74,8 +74,9 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading"><%=i+1%>. <%= question.getText()%></div>
                                 <% for (Option option : question.getOptions()) {%>
-                                <label style="color: #454545;" for="question<%=test.indexOf(question)%>">
+                                    <label style="color: #454545;" for="question<%=test.indexOf(question)%>">
                                     <input type="radio"  name="question<%=test.indexOf(question)%>" value="<%= option.getText()%>"/><%= option.getText()%>
+                                    <input type="text"  name="selecionada<%=test.indexOf(question)%>" value="<%= question.getOptions().indexOf(option) %>" hidden/>
                                 </label>
                                 <br/>
                                 <%}%>
