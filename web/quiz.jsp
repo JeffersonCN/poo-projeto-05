@@ -72,10 +72,10 @@
                                 Question question = test.get(i);
                             %>
                             <div class="panel panel-default">
-                                <div class="panel-heading"><%= question.getText()%></div>
+                                <div class="panel-heading"><%=i+1%>. <%= question.getText()%></div>
                                 <% for (Option option : question.getOptions()) {%>
-                                <label style="color: #454545;" for="<%=test.indexOf(question)%>">
-                                    <input type="radio"  name="<%=test.indexOf(question)%>" value="<%= option.getText()%>"/><%= option.getText()%>
+                                <label style="color: #454545;" for="question<%=test.indexOf(question)%>">
+                                    <input type="radio"  name="question<%=test.indexOf(question)%>" value="<%= option.getText()%>"/><%= option.getText()%>
                                 </label>
                                 <br/>
                                 <%}%>
