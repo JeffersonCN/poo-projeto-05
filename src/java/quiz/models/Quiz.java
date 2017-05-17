@@ -41,8 +41,9 @@ public class Quiz {
             questions = new ArrayList<>();
         
             Question question = new Question("Quem afundou o Brasil");
-            question.addOption("Lula", true);
-            question.addOption("Belchior", false);
+            question.addOption("1996", true);
+            question.addOption("1993", false);
+            question.addOption("Donald Trump", false);
             question.addOption("Donald Trump", false);
             questions.add(question);
 
