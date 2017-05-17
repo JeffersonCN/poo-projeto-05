@@ -31,12 +31,15 @@
         }
 
         questions = Quiz.getQuestions();
-        for (int i = 0; i < questions.size(); i++) {
-            for (Option o : questions.get(i).getOptions()) {
-                if (o.getText().equals(request.getParameter(String.valueOf(i)))) {
-                    questions.get(i).selectOption(o);
-                }
-            }
+        
+        for (int i = 0; i < 10; i++) {
+            Question question = questions.get(i);
+            
+            int selecionada = Integer.parseInt(request.getParameter("selecionada" + i));
+            
+            Option option = question.getOptions().get(selecionada);
+            
+            question.selectOption(option);
         }
     } catch (Exception e) {
         hasError = true;
