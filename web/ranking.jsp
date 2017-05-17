@@ -54,6 +54,9 @@ and open the template in the editor.
                         <thead>
                             <tr>
                                 <th class="text-center">
+                                    #
+                                </th>
+                                <th class="text-center">
                                     Nome
                                 </th>
                                 <th class="text-center">
@@ -70,9 +73,11 @@ and open the template in the editor.
 //                                Score.scores.add(new Score(-1, new Player(new UUID(1, 999), "Jogador 4")));
                                 ArrayList<Score> ranking = Score.scores;
                                 Collections.sort(ranking,new RankingComparator());
+                                int r = 1;
                                 for (Score score : ranking) {
                             %>
                             <tr>
+                                <td class="text-center"><%= r++ %></td>
                                 <td class="text-center"><%= score.getPlayer().getName()%></td>
                                 <td class="text-center"><%= score.getScore()%></td>
                             </tr>
