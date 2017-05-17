@@ -31,7 +31,7 @@
 
                         <div class="align-center">
                             <i class="fa fa-list fa-5x mar-bot20"></i>
-                          <form class="form-group" name ="formUser" action="quiz.jsp">
+                            <form class="form-group" method="POST" name ="formUser" action="quiz.jsp">
                             <h2 class="slogan">Usuário</h2>
                             <p>
                                 Olá, caro jogador. A seguir será apresentada uma sequência de perguntas com apenas uma alternativa correta
