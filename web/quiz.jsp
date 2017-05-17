@@ -50,28 +50,7 @@
     </head>
     <script language="JavaScript" src="TratamentoEntradas.js"></script>
     <body>
-        <section id="header" class="appear"></section>
-        <div class="navbar navbar-fixed-top" role="navigation" data-0="line-height:100px; height:100px; background-color:rgba(0,0,0,0.3);" data-300="line-height:60px; height:60px; background-color:rgba(0,0,0,1);">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="fa fa-bars color-white"></span>
-                    </button>
-                    <h1>
-                        <a class="navbar-brand" href="index.html" data-0="line-height:90px;" data-300="line-height:50px;">
-                            GRUPO 6
-                        </a>
-                    </h1>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav" data-0="margin-top:20px;" data-300="margin-top:5px;">
-                        <li ><a href="index.html">Home</a></li>
-                        <li ><a href="ranking.jsp">Ranking</a></li>
-                        <li class="active"><a href="user.jsp">Jogar</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        <%@include file="WEB-INF/jspf/header.jspf" %>
         <section class="featured">
             <div class="container"> 
                 <div class="row mar-bot40">
@@ -100,31 +79,7 @@
             </div>
         </section>
 
-        <section id="footer" class="section footer">
-            <div class="container">
-                <div class="row animated opacity mar-bot20" data-andown="fadeIn" data-animation="animation">
-                    <div class="col-sm-12 align-center">
-                        <ul class="social-network social-circle">
-                            <li><a href="#" class="icoRss" title="Rss"><i class="fa fa-rss"></i></a></li>
-                            <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
-                            <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-                        </ul>				
-                    </div>
-                </div>
-
-                <div class="row align-center copyright">
-                    <div class="col-sm-12"><p>Copyright &copy; Grupo 6</p>
-                        <div class="credits">
-                            <div class="col-sm-12"><p>Developed by: Jefferson C.    Victor V.   Tiago F.    Peterson P. Cesar P.</p>
-                            <a >Quiz</a> by <a >Grupo 6</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </section>
+        <%@include file="WEB-INF/jspf/footer.jspf" %>
 
         <a href="#header" class="scrollup"><i class="fa fa-chevron-up"></i></a>	
 
