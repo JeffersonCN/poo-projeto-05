@@ -1,3 +1,5 @@
+<%@page import="java.util.Random"%>
+<%@page import="java.util.Collection"%>
 <%@page import="quiz.models.Option"%>
 <%@page import="quiz.models.Quiz"%>
 <%@page import="quiz.models.Question"%>
@@ -16,20 +18,20 @@
     boolean hasError = false;
     String user_id = UUID.randomUUID().toString();
     String quiz_id = UUID.randomUUID().toString();
-    
+
     try {
         name = request.getParameter("name");
-    }catch(Exception e) {
+    } catch (Exception e) {
         strError = "Deu erro no getParameter manolo. Erro: " + e.getMessage();
     }
-    
-    if(hasError || name == null || name.isEmpty()) {
+
+    if (hasError || name == null || name.isEmpty()) {
         response.sendRedirect("user.jsp");
     }
-    
+
     Player player = new Player(user_id, name);
     Player.setPlayer(player);
-    
+
     Quiz quiz = new Quiz(quiz_id, player);
 
 %>
@@ -55,24 +57,28 @@
             <div class="container"> 
                 <div class="row mar-bot40">
                     <div class="col-md-6 col-md-offset-3">
-                            <div class="align-center">
-                                <i class="fa fa-list fa-5x mar-bot20"></i>
-                            </div>
+                        <div class="align-center">
+                            <i class="fa fa-list fa-5x mar-bot20"></i>
+                        </div>
                         <form name="formQuiz" action="result.jsp">
-                            <input type="hidden" value="<%= quiz.getId() %>">
-                            <% ArrayList<Question> test = Quiz.getQuestions(); %>
-                            <% for(Question question: test){ %>
-                                <div class="panel panel-default">
+                            <input type="hidden" value="<%= quiz.getId()%>">
+                            <%
+                                ArrayList<Question> test = Quiz.getQuestions();
+                                long seed = System.nanoTime();
+                                Collections.shuffle(test,new Random(seed));
+                            %>
+                            <% for (Question question : test) {%>
+                            <div class="panel panel-default">
                                 <div class="panel-heading"><%= question.getText()%></div>
-                                <% for(Option option: question.getOptions()){ %>
-                                    <label style="color: #454545;" for="<%=test.indexOf(question)%>">
-                                        <input type="radio"  name="<%=test.indexOf(question)%>" value="<%= option.getText() %>"/><%= option.getText() %>
-                                    </label>
-                                    <br/>
+                                <% for (Option option : question.getOptions()) {%>
+                                <label style="color: #454545;" for="<%=test.indexOf(question)%>">
+                                    <input type="radio"  name="<%=test.indexOf(question)%>" value="<%= option.getText()%>"/><%= option.getText()%>
+                                </label>
+                                <br/>
                                 <%}%>
-                                </div>
+                            </div>
                             <%}%>
-                          <button type="submit" style="color: #454545">Enviar</button>
+                            <button type="submit" style="color: #454545">Enviar</button>
                         </form>
                     </div>
                 </div>
