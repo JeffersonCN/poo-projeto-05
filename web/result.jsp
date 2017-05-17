@@ -16,24 +16,37 @@
     boolean hasError = false;
     double result = 0;
     ArrayList<Question> questions;
-    
+    String quizId = null;
+    String playerId = null;
+    Player player = null;
+
     try {
         id = request.getParameter("id");
+        quizId = request.getParameter("quizId");
+        playerId = request.getParameter("playerId");
+        for (Player p : Player.getPlayers()) {
+            if (p.getId().equals(playerId)) {
+                player = p;
+            }
+        }
+
         questions = Quiz.getQuestions();
-        for(int i = 0; i < questions.size(); i++){
-            for(Option o : questions.get(i).getOptions()){
-                if(o.getText().equals(request.getParameter(String.valueOf(i)))){
+        for (int i = 0; i < questions.size(); i++) {
+            for (Option o : questions.get(i).getOptions()) {
+                if (o.getText().equals(request.getParameter(String.valueOf(i)))) {
                     questions.get(i).selectOption(o);
                 }
-            }   
+            }
         }
-    }catch(Exception e){
+    } catch (Exception e) {
         hasError = true;
         strError = "Erro: " + e.getMessage();
     }
-    
-    if(!hasError){
+
+    if (!hasError) {
         result = Quiz.validateAnswers();
+        Score score = new Score((int)(result*100), player);
+        Score.scores.add(score);
     }
 %>
 
@@ -55,11 +68,45 @@
     <script language="JavaScript" src="TratamentoEntradas.js"></script>
     <body>
         <%@include file="WEB-INF/jspf/header.jspf" %>
+
+
         <section class="featured">
             <div class="container"> 
                 <div class="row mar-bot40">
                     <div class="col-md-6 col-md-offset-3">
-                        <p><%= result %></p>
+
+                        <div class="align-center">
+                            <i class="fa fa-star fa-5x mar-bot20"></i>
+                            <h2 class="slogan">Parabéns</h2>
+                            <p>
+                                Olá, caro jogador. Voce acertou <%= (int)(result*100) %>% das perguntas! Parabéns!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="section-services" class="section pad-bot30 bg-white">
+            <div class="container"> 
+                <div class="row mar-bot40">
+                    <div class="col-lg-6" >
+                        <div class="align-center">
+                            <a href="quiz.jsp">  <i class="fa fa-arrow-right fa-5x mar-bot30"></i></a>
+                            <a href="quiz.jsp"><h4 class="text-bold">Responder ao Quiz</h4></a>
+                            <p> 
+                                Clique em responder ao Quiz para iniciar seu teste.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6" >
+                        <div class="align-center">
+                            <a href="ranking.jsp">  <i class="fa fa-list-ol fa-5x mar-bot30"></i></a>
+                            <a href="ranking.jsp"> <h4 class="text-bold">Ranking</h4></a>
+                            <p>
+                                Clique em Ranking para visualizar sua colocação no ranking geral.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>

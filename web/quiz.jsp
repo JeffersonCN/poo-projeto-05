@@ -60,12 +60,13 @@
                         <div class="align-center">
                             <i class="fa fa-list fa-5x mar-bot20"></i>
                         </div>
-                        <form name="formQuiz" action="result.jsp">
-                            <input type="hidden" value="<%= quiz.getId()%>">
+                        <form name="formQuiz" method="POST" action="result.jsp">
+                            <input type="hidden" name="quizId" value="<%= quiz.getId()%>">
+                            <input type="hidden" name="playerId" value="<%= player.getId()%>">
                             <%
                                 ArrayList<Question> test = Quiz.getQuestions();
                                 long seed = System.nanoTime();
-                                Collections.shuffle(test,new Random(seed));
+                                Collections.shuffle(test, new Random(seed));
                             %>
                             <% for (Question question : test) {%>
                             <div class="panel panel-default">
