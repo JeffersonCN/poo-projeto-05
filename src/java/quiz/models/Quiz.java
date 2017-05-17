@@ -184,10 +184,10 @@ public class Quiz {
         return questions;
     }
     
-    public static double validateAnswers(){
+    public static double validateAnswers() {
         int count = 0;
-        for(int i = 0; i < questions.size(); i++){
-            Option option = questions.get(i).getSelectedOption();
+        for(int i = 0; i < 10; i++){
+            Option option = Quiz.questions.get(i).getSelectedOption();
             if(option.isCorrectAnswer()){
                 count++;
             }
